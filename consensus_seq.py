@@ -12,17 +12,22 @@ class consensus_Seq:
         alignment = AlignIO.read(sys.argv[1], 'fasta')
         summary_align = AlignInfo.SummaryInfo(alignment)
         consensus_seq = summary_align.dumb_consensus(float(sys.argv[2]))
-        print(consensus_seq)
+        upper_consensus = consensus_seq.upper()
+        return(upper_consensus)
 
-    #$def lower_similiarity(self):
-        #simi_seq = self.make_consensus_seq()
-        #str_seq = str(simi_seq)
-        #for i in str_seq:
-            #if i == "X":
-                #replaced=simi_seq.replace("X","N")
-        #print(replaced)
+    def lower_similiarity(self):
+        simi_seq = self.make_consensus_seq()
+        str_seq = str(simi_seq)
+        for i in str_seq:
+            if i == "X":
+                replaced=simi_seq.replace("X","N")
+        return(replaced)
 
-consensus_Seq().make_consensus_seq()
+    #def raise_error(self):
+        #undefined_seq
+
+consensus_Seq().lower_similiarity()
+
 
 
 
