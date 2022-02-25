@@ -36,12 +36,25 @@ class consensus_Seq:
                 count_G = count_seq.count("G")
                 count_C = count_seq.count("C")
                 count_GC = (count_G + count_C)/ len(count_seq)
-        print(count_seq)
-        percent = "GC content:{:.0%}".format(count_GC)
-        print(percent)
+        return(count_GC)
 
 
-consensus_Seq().count_GCcomp()
+    def nucleotide_comp(self):
+        comp_seq = self.lower_similiarity()
+        for i in comp_seq:
+            if i == "G" or "C" or "A" or "T":
+                comp_G = comp_seq.count("G")
+                comp_C = comp_seq.count("C")
+                comp_A = comp_seq.count("A")
+                comp_T = comp_seq.count("T")
+        print(comp_G)
+        print(comp_C)
+        print(comp_A)
+        print(comp_T)
+        print(len(comp_seq))
+
+
+consensus_Seq().nucleotide_comp()
 
 
 
