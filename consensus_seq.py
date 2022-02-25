@@ -23,16 +23,25 @@ class consensus_Seq:
                 replaced=simi_seq.replace("X","N")
         return(replaced)
 
-    def raise_error(self):
-        undefined_seq = self.lower_similiarity()
-        for n in undefined_seq:
-            if n == "N":
-                raise TypeError("N detected in Sequence, please lower threshold value")
+    #def raise_error(self):
+        #undefined_seq = self.lower_similiarity()
+        #for n in undefined_seq:
+            #if n == "N":
+                #raise Exception("N detected in Sequence, please lower threshold value")
+
+    def count_GCcomp(self):
+        count_seq = self.lower_similiarity()
+        for i in count_seq:
+            if i == "G" or "C":
+                count_G = count_seq.count("G")
+                count_C = count_seq.count("C")
+                count_GC = (count_G + count_C)/ len(count_seq)
+        print(count_seq)
+        percent = "GC content:{:.0%}".format(count_GC)
+        print(percent)
 
 
-
-
-consensus_Seq().raise_error()
+consensus_Seq().count_GCcomp()
 
 
 
