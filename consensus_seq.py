@@ -13,7 +13,8 @@ class consensus_Seq:
         summary_align = AlignInfo.SummaryInfo(alignment)
         consensus_seq = summary_align.dumb_consensus(float(sys.argv[2]))
         upper_consensus = consensus_seq.upper()
-        return(upper_consensus)
+        print(upper_consensus)
+
 
     def lower_similiarity(self):
         simi_seq = self.make_consensus_seq()
@@ -23,11 +24,20 @@ class consensus_Seq:
                 replaced=simi_seq.replace("X","N")
         return(replaced)
 
+    #def randomized_seq(self):
+       # replace_seq = self.lower_similiarity()
+        #random_list = ["A","T","C","G"]
+        #replace_letter = "N"
+        #list_shuffle = shuffle
+        #for i in replace_seq:
+
+
+
     #def raise_error(self):
         #undefined_seq = self.lower_similiarity()
         #for n in undefined_seq:
             #if n == "N":
-                #raise Exception("N detected in Sequence, please lower threshold value")
+               # raise Exception("N detected in Sequence, please lower threshold value")
 
     def count_GCcomp(self):
         count_seq = self.lower_similiarity()
@@ -47,6 +57,7 @@ class consensus_Seq:
                 comp_C = comp_seq.count("C")
                 comp_A = comp_seq.count("A")
                 comp_T = comp_seq.count("T")
+        print(comp_seq)
         print(comp_G)
         print(comp_C)
         print(comp_A)
@@ -54,7 +65,7 @@ class consensus_Seq:
         print(len(comp_seq))
 
 
-consensus_Seq().nucleotide_comp()
+consensus_Seq().make_consensus_seq()
 
 
 
