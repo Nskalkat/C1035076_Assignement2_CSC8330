@@ -23,10 +23,16 @@ class consensus_Seq:
                 replaced=simi_seq.replace("X","N")
         return(replaced)
 
-    #def raise_error(self):
-        #undefined_seq
+    def raise_error(self):
+        undefined_seq = self.lower_similiarity()
+        for n in undefined_seq:
+            if n == "N":
+                raise TypeError("N detected in Sequence, please lower threshold value")
 
-consensus_Seq().lower_similiarity()
+
+
+
+consensus_Seq().raise_error()
 
 
 
