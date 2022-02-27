@@ -20,9 +20,10 @@ class consensus_Seq:
     def lower_similiarity(self):
         simi_seq = self.make_consensus_seq()
         str_seq = str(simi_seq)
+        replaced = str_seq
         for i in str_seq:
             if i == "X":
-                replaced=simi_seq.replace("X","N")
+                replaced=str_seq.replace("X","N")
         return(replaced)
 
     def randomized_seq(self):
@@ -36,8 +37,6 @@ class consensus_Seq:
         return(random_seq)
 
 
-
-
     def raise_error(self):
         undefined_seq = self.randomized_seq()
         for n in undefined_seq:
@@ -48,32 +47,32 @@ class consensus_Seq:
 
     def count_GCcomp(self):
         count_seq = self.raise_error()
+        count_GC = count_seq
         for i in count_seq:
             if i == "G" or "C":
                 count_G = count_seq.count("G")
                 count_C = count_seq.count("C")
                 count_GC = (count_G + count_C)/ len(count_seq)
-        print(count_seq)
-        print(count_GC)
+        return(count_GC)
 
 
     def nucleotide_comp(self):
-        comp_seq = self.lower_similiarity()
+        comp_seq = self.raise_error()
+        comp_G = comp_seq
+        comp_C = comp_seq
+        comp_A = comp_seq
+        comp_T = comp_seq
         for i in comp_seq:
             if i == "G" or "C" or "A" or "T":
                 comp_G = comp_seq.count("G")
                 comp_C = comp_seq.count("C")
                 comp_A = comp_seq.count("A")
                 comp_T = comp_seq.count("T")
-        print(comp_seq)
-        print(comp_G)
-        print(comp_C)
-        print(comp_A)
-        print(comp_T)
-        print(len(comp_seq))
+        return(comp_G,comp_C,comp_A,comp_T)
 
 
-consensus_Seq().count_GCcomp()
+
+
 
 
 
