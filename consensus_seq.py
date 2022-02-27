@@ -1,4 +1,5 @@
 import sys
+import random
 from Bio import AlignIO
 from Bio.Align import AlignInfo
 
@@ -13,7 +14,7 @@ class consensus_Seq:
         summary_align = AlignInfo.SummaryInfo(alignment)
         consensus_seq = summary_align.dumb_consensus(float(sys.argv[2]))
         upper_consensus = consensus_seq.upper()
-        print(upper_consensus)
+        return(upper_consensus)
 
 
     def lower_similiarity(self):
@@ -24,29 +25,36 @@ class consensus_Seq:
                 replaced=simi_seq.replace("X","N")
         return(replaced)
 
-    #def randomized_seq(self):
-       # replace_seq = self.lower_similiarity()
-        #random_list = ["A","T","C","G"]
-        #replace_letter = "N"
-        #list_shuffle = shuffle
-        #for i in replace_seq:
+    def randomized_seq(self):
+        replace_seq = self.lower_similiarity()
+        random_list = ["A","T","C","G"]
+        rando = random.choice(random_list)
+        random_seq = replace_seq
+        for i in random_seq:
+            if i == "N":
+                random_seq = replace_seq.replace("N",rando)
+        return(random_seq)
 
 
 
-    #def raise_error(self):
-        #undefined_seq = self.lower_similiarity()
-        #for n in undefined_seq:
-            #if n == "N":
-               # raise Exception("N detected in Sequence, please lower threshold value")
+
+    def raise_error(self):
+        undefined_seq = self.randomized_seq()
+        for n in undefined_seq:
+            if n == "N":
+                raise Exception("N detected in Sequence, please lower threshold value")
+            else:
+                return(undefined_seq)
 
     def count_GCcomp(self):
-        count_seq = self.lower_similiarity()
+        count_seq = self.raise_error()
         for i in count_seq:
             if i == "G" or "C":
                 count_G = count_seq.count("G")
                 count_C = count_seq.count("C")
                 count_GC = (count_G + count_C)/ len(count_seq)
-        return(count_GC)
+        print(count_seq)
+        print(count_GC)
 
 
     def nucleotide_comp(self):
@@ -65,7 +73,7 @@ class consensus_Seq:
         print(len(comp_seq))
 
 
-consensus_Seq().make_consensus_seq()
+consensus_Seq().count_GCcomp()
 
 
 
