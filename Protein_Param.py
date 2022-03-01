@@ -1,5 +1,6 @@
 from consensus_seq import consensus_Seq
 from Bio.Seq import Seq
+from Bio.SeqUtils.ProtParam import ProteinAnalysis
 
 class protein_param:
     DNA_codon_table = {
@@ -38,9 +39,47 @@ class protein_param:
         for i in range(0, len(trans_seq), 3):
             codon = trans_seq[i:i + 3]
             protein += codon_table[codon]
-        print(protein)
+        return(protein)
 
-    #def amino_acid_comp
+    def param_analysis(self):
+        analysis_seq = ProteinAnalysis(self.translate_seq())
+        return(analysis_seq)
+
+    def amino_acid_comp(self):
+        comp_seq = self.param_analysis()
+        comp = comp_seq.count_amino_acids()
+        return(comp)
+
+    #def amino_acid_percent(self):
+        #percent_seq = self.param_analysis()
+        #percent = percent_seq.get_amino_acids_percent()
+        #print(percent)
+
+    def amino_acid_mw(self):
+        mw_seq = self.param_analysis()
+        mw = mw_seq.molecular_weight()
+        return(mw)
+
+    def amino_acid_aromaticity(self):
+        aromaticity_seq = self.param_analysis()
+        aromaticity = aromaticity_seq.aromaticity()
+        return(aromaticity)
+
+    def amino_acid_instability(self):
+        instability_seq = self.param_analysis()
+        instability = instability_seq.instability_index()
+        print(instability)
+
+    def amino_acid_flexibility(self):
+        flexiblity_seq = self.param_analysis()
+        flexiblity = flexiblity_seq.flexibility()
+        print(flexiblity)
+
+    def amino_acid_iso(self):
+        iso_seq = self.param_analysis()
+        iso = iso_seq.isoelectric_point()
+        print(iso)
 
 
-protein_param().translate_seq()
+
+protein_param().amino_acid_iso()
