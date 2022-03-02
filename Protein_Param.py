@@ -55,12 +55,12 @@ class protein_param:
         percent = percent_seq.get_amino_acids_percent()
         return(percent)
 
-    def print_percent(self):
-        print_per = self.amino_acid_percent()
-        format=""
-        for i in self.amino_acids_content_percent().values():
-            format = f"{print_per:%}"
-        print(format)
+    #def print_percent(self):
+        #print_per = self.amino_acid_percent()
+        #format=""
+        #for i in self.amino_acids_content_percent().values():
+            #format = f"{print_per:%}"
+        #print(format)
 
     def amino_acid_mw(self):
         mw_seq = self.param_analysis()
@@ -91,27 +91,35 @@ class protein_param:
         with open('output.txt', 'w') as f:
             f.write('Consensus Sequence: ')
             f.writelines(''.join(consensus_Seq().raise_error()))
-            f.write('\n')
-            f.write('\n')
-            f.write('\n')
+            f.write('\n\n\n')
             f.write('GC percent: ')
             f.writelines(''.join(str(consensus_Seq().count_GCcomp())))
-            f.write('\n')
-            f.write('\n')
-            f.write('\n')
+            f.write('\n\n\n')
             f.write('Nucleotide Composition in order of G,C,A,T: ')
             f.writelines(''.join(str(consensus_Seq().nucleotide_comp())))
-            f.write('\n')
-            f.write('\n')
-            f.write('\n')
+            f.write('\n\n\n')
             f.write('Protein Sequence: ')
             f.writelines(''.join(protein_param().translate_seq()))
-            f.write('\n')
-            f.write('\n')
-            f.write('\n')
+            f.write('\n\n\n')
             f.write('AA composition: ')
             f.writelines(''.join(protein_param().translate_seq()))
+            f.write('\n\n\n')
+            f.write('Molecular Weight: ')
+            f.writelines(''.join(str(protein_param().amino_acid_mw())))
+            f.write('\n\n\n')
+            f.write('Aromaticty: ')
+            f.writelines(''.join(str(protein_param().amino_acid_aromaticity())))
+            f.write('\n\n\n')
+            f.write('Instability index: ')
+            f.writelines(''.join(str(protein_param().amino_acid_instability())))
+            f.write('\n\n\n')
+            f.write('Flexibility: ')
+            f.writelines(''.join(str(protein_param().amino_acid_flexibility())))
+            f.write('\n\n\n')
+            f.write('Isoelectric value: ')
+            f.writelines(''.join(str(protein_param().amino_acid_iso())))
 
 
 
-protein_param().print_percent()
+
+protein_param().write_to_file()
