@@ -1,7 +1,7 @@
-import sys
-import random
-from Bio import AlignIO
-from Bio.Align import AlignInfo
+import sys # used to take in arguements such as fastA file and consensus value
+import random #purpose of this import is used to randomize the Nucleotide replacement
+from Bio import AlignIO #helps with the alignment of seqeunces as well as consensus sequence
+from Bio.Align import AlignInfo #helps with alignment of sequences as well as consensus sequence
 
 class consensus_Seq:
     ''' The purpsoe of this class is to first read a file containing a number
@@ -23,6 +23,7 @@ class consensus_Seq:
 
     def make_consensus_seq(self):
         'The purpose of this method is to make the consensus sequence from a file of DNA sequenes in FASTA format'
+        #code in this method was adapted from https://www.biostars.org/p/284637/
         alignment = AlignIO.read(sys.argv[1], 'fasta') #code reads the contents of the FASTA file
         consensus_align = AlignInfo.SummaryInfo(alignment)
         #code above gives information about the alignement as well as aligning sequences
@@ -30,6 +31,7 @@ class consensus_Seq:
         #code above that makes the consensus sequence from a consensus value given by the user (from 0-1)
         upper_consensus = consensus_seq.upper()
         return(upper_consensus)
+
 
 
     def lower_similiarity(self):
